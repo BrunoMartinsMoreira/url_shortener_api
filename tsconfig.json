@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es2017",                                  
-    "module": "commonjs",  
-    "allowJs": true,                              
+    "target": "es2020",                                  
+    "module": "commonjs",                                
     "esModuleInterop": true,                                         
     "strict": false,                                      
     "skipLibCheck": true,
+    "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",                               
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true                              
   }
 }
