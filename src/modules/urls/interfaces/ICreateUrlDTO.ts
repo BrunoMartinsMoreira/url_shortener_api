@@ -1,6 +1,6 @@
 interface ICreateUrlDTO {
   original_url: string;
-  name: string;
+  hash: string;
   user_id: string;
   clicks?: number;
 }

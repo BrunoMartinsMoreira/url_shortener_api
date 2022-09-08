@@ -3,9 +3,23 @@ import { ICreateUrlDTO } from './ICreateUrlDTO';
 
 interface IUrlsRepository {
   create(data: ICreateUrlDTO): Promise<Url>;
-  findById(id: string): Promise<Url>;
-  findByName(name: string): Promise<Url>;
-  incrementClick(url: Url): Promise<Url>;
+
+  findByUserId(user_id: string): Promise<Url[]>;
+
+  findByHash(hash: string): Promise<Url>;
+
+  updateLasClickDateAndInCrementeClicks(
+    id: string,
+    newClicksValue: number,
+    date: string,
+  ): Promise<void>;
+
+  findByOriginalUrlAndUserId(
+    original_url: string,
+    user_id: string,
+  ): Promise<Url>;
+
+  deleteInactiveUrls(date: string): Promise<void>;
 }
 
 export { IUrlsRepository };

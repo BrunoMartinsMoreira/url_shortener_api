@@ -33,7 +33,7 @@ class Url {
   @CreateDateColumn()
   created_at: Date;
 
-  @Column()
+  @Column({ nullable: true, default: null })
   last_click_date: Date;
 }
 
