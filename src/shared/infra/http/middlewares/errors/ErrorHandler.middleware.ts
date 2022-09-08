@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from 'express';
 
-import { AppError } from "../../errors/AppError";
+import { AppError } from '../../errors/AppError';
 
 function errorHandler(
   error: Error,
   req: Request,
   res: Response,
-  next: NextFunction
-) {
+  next: NextFunction,
+): Response<Error> {
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       message: error.message,
@@ -16,7 +16,7 @@ function errorHandler(
   }
 
   return res.status(500).json({
-    status: "error",
+    status: 'error',
     message: `Internal server error - ${error.message}`,
   });
 }
