@@ -2,8 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+
+import { User } from '../../../../users/infra/database/entities/User';
 
 @Entity('urls')
 class Url {
@@ -18,6 +22,10 @@ class Url {
 
   @Column()
   clicks: number;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @Column()
   user_id: string;

@@ -1,30 +1,32 @@
-version: '3.1'
+version: '3.7'
 
 services:
   db:
     image: postgres
-    restart: always
     container_name: url_db
+    restart: always
     ports:
-      - "5432:5432"
+      - 5432:5432
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=urldb
     volumes:
-      - .:/usr/src/app
-    working_dir: /usr/src/app  
+      - pgdata:/data/postgres  
   api:
     image: node:16
-    restart: always
     container_name: url_api
+    restart: always
     ports:
-      - "3333:3333"
+      - 3333:3333
     volumes:
-      - .:/usr/src/app
-    working_dir: /usr/src/app  
+      - .:/usr/app
+    working_dir: /usr/app   
     links:
       - db
     depends_on:
       - db
     command: yarn dev
+volumes:
+  pgdata:
+    driver: local    
