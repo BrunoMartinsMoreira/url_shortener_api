@@ -18,11 +18,12 @@ class RedirectUrlUseCase {
 
   async execute(hash: string): Promise<IResponse> {
     const url = await this.urlsRepository.findByHash(hash);
-    let { id, clicks } = url;
 
     if (!url) {
       throw new AppError('Url expired');
     }
+
+    let { id, clicks } = url;
 
     clicks++;
 
