@@ -5,6 +5,11 @@ import { AppError } from '../../../../shared/infra/http/errors/AppError';
 import { ICreateUserDTO } from '../../interfaces/ICreateUserDTO';
 import { IUsersRepository } from '../../interfaces/IUsersRepository';
 
+interface IResponse {
+  id: string;
+  email: string;
+}
+
 @injectable()
 class CreateUserUseCase {
   constructor(
@@ -12,7 +17,7 @@ class CreateUserUseCase {
     private usersRepository: IUsersRepository,
   ) {}
 
-  async execute({ name, password, email }: ICreateUserDTO): Promise<void> {
+  async execute({ name, password, email }: ICreateUserDTO): Promise<IResponse> {
     if (!name || !password || !email) {
       throw new AppError('Name, email and password are required!');
     }
@@ -25,11 +30,16 @@ class CreateUserUseCase {
 
     const pwdHash = await hash(password, 8);
 
-    await this.usersRepository.create({
+    const user = await this.usersRepository.create({
       name,
       password: pwdHash,
       email,
     });
+
+    return {
+      id: user.id,
+      email: user.email,
+    };
   }
 }
 
