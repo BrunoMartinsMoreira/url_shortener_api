@@ -56,7 +56,9 @@ class CreateUrlUseCase {
       }
     }
 
-    const shortUrl = `${String(BASE_URL)}/urls/${hash}`;
+    const shortUrl = BASE_URL
+      ? `${String(BASE_URL)}/urls/${hash}`
+      : `http://localhost:3333/urls/${hash}`;
 
     const url = await this.urlsRepository.create({
       original_url,

@@ -13,7 +13,6 @@ class UrlCronJobs {
   async startCronJob(): Promise<void> {
     const date = getDate();
     await this.urlsRepository.deleteInactiveUrls(date);
-    // '0 0 1 ? * SUN *'
   }
 }
 export { UrlCronJobs };
