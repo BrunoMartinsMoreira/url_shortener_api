@@ -33,6 +33,8 @@
      "import/extensions":"off",
      "no-plusplus":"off",
      "no-await-in-loop":"off",
+     "no-useless-return":"off",
+     "consistent-return":"off",
      "import-helpers/order-imports":[
 		  "warn",
 		  {
