@@ -37,6 +37,8 @@ export class CreateUrlTable1662644671517 implements MigrationInterface {
           {
             name: 'last_click_date',
             type: 'timestamp',
+            isNullable: true,
+            default: null,
           },
         ],
         foreignKeys: [
