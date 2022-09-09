@@ -49,13 +49,13 @@ class UrlsRepository implements IUrlsRepository {
       .execute();
   }
 
-  async findByHash(hash: string): Promise<Url> {
+  async findByHash(hash: string): Promise<string> {
     const url = await this.repository.findOne({
       where: {
         hash,
       },
     });
-    return url;
+    return url.hash;
   }
 
   async findByOriginalUrlAndUserId(

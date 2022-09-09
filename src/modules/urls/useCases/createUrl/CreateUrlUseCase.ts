@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import { generate } from 'shortid';
 import { inject, injectable } from 'tsyringe';
 
@@ -34,7 +33,14 @@ class CreateUrlUseCase {
       throw new AppError('Invalid url');
     }
 
-    const hash = generate();
+    let hash: string;
+
+    let hashIsAlreadyInUse: string;
+
+    do {
+      hash = generate();
+      hashIsAlreadyInUse = await this.urlsRepository.findByHash(hash);
+    } while (hashIsAlreadyInUse);
 
     const { BASE_URL } = process.env;
 

@@ -32,6 +32,7 @@
 	   "lines-between-class-members":"off",
      "import/extensions":"off",
      "no-plusplus":"off",
+     "no-await-in-loop":"off",
      "import-helpers/order-imports":[
 		  "warn",
 		  {

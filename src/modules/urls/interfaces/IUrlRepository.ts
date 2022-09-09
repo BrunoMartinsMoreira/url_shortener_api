@@ -6,7 +6,7 @@ interface IUrlsRepository {
 
   findByUserId(user_id: string): Promise<Url[]>;
 
-  findByHash(hash: string): Promise<Url>;
+  findByHash(hash: string): Promise<string>;
 
   updateLasClickDateAndInCrementeClicks(
     id: string,
