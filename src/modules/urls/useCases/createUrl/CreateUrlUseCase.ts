@@ -33,15 +33,6 @@ class CreateUrlUseCase {
       throw new AppError('Invalid url');
     }
 
-    let hash: string;
-
-    let hashIsAlreadyInUse: string;
-
-    do {
-      hash = generate();
-      hashIsAlreadyInUse = await this.urlsRepository.findByHash(hash);
-    } while (hashIsAlreadyInUse);
-
     const { BASE_URL } = process.env;
 
     const urlAlreadyExists =
@@ -53,6 +44,18 @@ class CreateUrlUseCase {
     if (urlAlreadyExists) {
       throw new AppError('You already have this url registered');
     }
+
+    let hash = generate();
+    let hashIsAlreadyInUse = await this.urlsRepository.findByHash(hash);
+
+    if (hashIsAlreadyInUse) {
+      while (hashIsAlreadyInUse) {
+        const newHash = generate();
+        hashIsAlreadyInUse = await this.urlsRepository.findByHash(newHash);
+        if (!hashIsAlreadyInUse) hash = newHash;
+      }
+    }
+
     const shortUrl = `${String(BASE_URL)}/urls/${hash}`;
 
     const url = await this.urlsRepository.create({

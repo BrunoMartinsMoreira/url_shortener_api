@@ -12,7 +12,11 @@ class CreateUrlController {
 
     const url = await createUrlUseCase.execute({ original_url, user_id: id });
 
-    return res.status(200).json(url);
+    return res.status(200).json({
+      url,
+      message:
+        'Shortened urls that remain idle for 3 months or more, ie without clicks, will be automatically deleted!',
+    });
   }
 }
 
