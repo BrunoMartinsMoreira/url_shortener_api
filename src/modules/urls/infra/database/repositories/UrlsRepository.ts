@@ -15,12 +15,14 @@ class UrlsRepository implements IUrlsRepository {
     original_url,
     hash,
     user_id,
+    short_url,
     clicks = 0,
   }: ICreateUrlDTO): Promise<Url> {
     const url = this.repository.create({
       original_url,
       hash,
       user_id,
+      short_url,
       clicks,
     });
 
@@ -29,7 +31,7 @@ class UrlsRepository implements IUrlsRepository {
   }
 
   async findByUserId(user_id: string): Promise<Url[]> {
-    const urls = await this.repository.find({ where: user_id });
+    const urls = await this.repository.find({ where: { user_id } });
     return urls;
   }
 

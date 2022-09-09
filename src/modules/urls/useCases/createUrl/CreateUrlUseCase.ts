@@ -47,14 +47,14 @@ class CreateUrlUseCase {
     if (urlAlreadyExists) {
       throw new AppError('You already have this url registered');
     }
+    const shortUrl = `${String(BASE_URL)}/urls/${hash}`;
 
     const url = await this.urlsRepository.create({
       original_url,
       user_id,
       hash,
+      short_url: shortUrl,
     });
-
-    const shortUrl = `${String(BASE_URL)}/urls/${url.hash}`;
 
     return {
       id: url.id,

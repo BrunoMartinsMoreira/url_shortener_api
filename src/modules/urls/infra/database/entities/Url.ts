@@ -30,6 +30,9 @@ class Url {
   @Column()
   user_id: string;
 
+  @Column()
+  short_url: string;
+
   @CreateDateColumn()
   created_at: Date;
 
