@@ -13,9 +13,9 @@ interface IRequest {
 interface IResponse {
   id: string;
   original_url: string;
-  user_id: string;
   shortUrl: string;
   created_at: Date;
+  clicks: number;
   last_click_date: Date;
 }
 
@@ -70,9 +70,9 @@ class CreateUrlUseCase {
     return {
       id: url.id,
       original_url,
-      user_id,
       shortUrl,
       created_at: url.created_at,
+      clicks: url.clicks,
       last_click_date: url.last_click_date,
     };
   }

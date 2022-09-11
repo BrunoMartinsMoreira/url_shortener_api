@@ -17,7 +17,7 @@ export async function ensureAuthenticated(
   const usersRepository = new UsersRepository();
 
   if (!authHeader) {
-    throw new AppError('Invalid token');
+    throw new AppError('User must be authenticated');
   }
 
   const [, token] = authHeader.split(' ');
@@ -40,6 +40,6 @@ export async function ensureAuthenticated(
 
     next();
   } catch (error) {
-    throw new AppError('Invalid token', 401);
+    throw new AppError('User must be authenticated', 401);
   }
 }
