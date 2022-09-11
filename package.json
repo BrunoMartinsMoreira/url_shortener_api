@@ -11,7 +11,7 @@
     "migrate": "yarn typeorm migration:run",
     "test:watch": "jest --watch --runInBand",
     "test": "jest --runInBand",
-    "server:up": "docker-compose up -d && yarn migrate",
+    "start": "docker-compose up -d && yarn migrate",
     "logs": "docker-compose logs -f"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^29.0.0",
     "@types/jsonwebtoken": "^8.5.8",
