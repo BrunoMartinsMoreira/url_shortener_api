@@ -3,7 +3,7 @@
 ## In the project directory, you can run:
 
 ```
-yarn start
+docker-compose up -d
 ```
 
 ## To run the tests
